@@ -1,9 +1,9 @@
-# Create one R script called run_analysis.R that does the following:
-# 1. Merges the training and the test sets to create one data set.
-# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-# 3. Uses descriptive activity names to name the activities in the data set
-# 4. Appropriately labels the data set with descriptive activity names.
-# 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+#As per the assignment,  R script run_analysis.R has been created for the following:
+# 1. to merge the training and the test sets to create one data set.
+# 2. to extract only the measurements on the mean and standard deviation for each measurement.
+# 3. to use descriptive activity names to name the activities in the data set
+# 4. to label the data set with descriptive activity names appropriately.
+# 5. to create a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 #data.table and reshape2 package will be installed if it is not
 if (!require("data.table")) {
@@ -52,4 +52,4 @@ data_labels = setdiff(colnames(merged_data), id_labels)
 melt_data      = melt(merged_data, id = id_labels, measure.vars = data_labels)
 # Create independent tidy data set with the average of each variable for each activity and each subject.
 tidy_data   = dcast(melt_data, subject + Activity_Label ~ variable, mean)
-write.table(tidy_data, file = "./final_tidy_data.txt")
+write.table(tidy_data, file = "./tidy_data_set.txt")
